@@ -17,14 +17,15 @@ const Filter = () => {
 
   return (
     /* Filter section code */
-    <Space direction='horizontal' style={{ background: 'cornflowerblue', padding: '20px', width: '100%' }}>
+    <Space direction='horizontal' style={{ background: 'cornflowerblue', padding: '20px', width: '100%',overflowX: 'auto' }}>
       <Space direction='vertical'>
         <div style={{ marginBottom: '0px', marginLeft: '10px' }}>
           <p style={{ margin: 0, color: 'white', fontWeight: 'bold' }}>Market</p>
         </div>
         <Select
           mode="multiple"
-          style={{ width: '120px', marginTop: '0px', marginRight: '10px' }}
+          maxTagCount={1}
+          style={{ width: '170px', marginTop: '0px', marginRight: '10px' }}
           placeholder="All Markets"
           onChange={handleChange}
         >
@@ -41,7 +42,9 @@ const Filter = () => {
         </div>
         <Select
           mode="multiple"
-          style={{ width: '120px', marginTop: '0px', marginRight: '10px' }}
+          maxTagCount={1}
+          allowClear
+          style={{ width: '180px', marginTop: '0px', marginRight: '10px' }}
           placeholder="All Retailers"
           onChange={handleChange}
         >
@@ -58,7 +61,9 @@ const Filter = () => {
         </div>
         <Select
           mode="multiple"
-          style={{ width: '120px', marginTop: '0px', marginRight: '10px' }}
+          maxTagCount={1}
+          allowClear
+          style={{ width: '180px',  marginRight: '10px' }}
           placeholder="All Categories"
           onChange={handleChange}
         >
@@ -75,7 +80,9 @@ const Filter = () => {
         </div>
         <Select
           mode="multiple"
-          style={{ width: '120px', marginTop: '0px', marginRight: '10px' }}
+          maxTagCount={1}
+          allowClear
+          style={{ width: '170px', marginTop: '0px', marginRight: '10px' }}
           placeholder="All Brands"
           onChange={handleChange}
         >
