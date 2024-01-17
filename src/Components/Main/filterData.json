@@ -115,5 +115,103 @@
                 "label": "BlueSky"
             }
         ]
+    },
+
+
+    "dropdown": {
+        "markets": {
+        "US": {
+            "retailers": ["Amazon", "Walmart", "InstaCart", "Kroger", "Target", "Sams Club"],
+            "categories": {},
+            "brands": {}
+        }
+        },
+        "retailers": {
+        "Amazon": {
+            "categories": ["Dish Wash", "Detergent"],
+            "brands": {}
+        },
+        "Walmart": {
+            "categories": ["Hair Care", "Skin Care"],
+            "brands": {}
+        },
+        "InstaCart": {
+            "categories": ["Home Care", "Baby Care"],
+            "brands": {}
+        },
+        "Kroger": {
+            "categories": ["Fem Care"],
+            "brands": {}
+        },
+        "Target": {
+            "categories": ["Hand Wash"],
+            "brands": {}
+        },
+        "Sams Club": {
+            "categories": ["Detergent"],
+            "brands": {}
+        }
+        },
+        "categories": {
+        "Dish Wash": {
+            "brands": [
+            { "name": "Magic", "currentCount": 150, "previousCount": 100 },
+            { "name": "Johnty", "currentCount": 100, "previousCount": 150 }
+            ]
+        },
+        "Hair Care": {
+            "brands": [
+            { "name": "Fresh", "currentCount": 250, "previousCount": 200 },
+            { "name": "RiverStone", "currentCount": 50, "previousCount": 250 }
+            ]
+        },
+        "Skin Care": {
+            "brands": [
+            { "name": "Skyline", "currentCount": 150, "previousCount": 100 }
+            ]
+        },
+        "Detergent": {
+            "brands": [
+            { "name": "John", "currentCount": 250, "previousCount": 200 }
+            ]
+        },
+        "Home Care": {
+            "brands": [
+            { "name": "Solo", "currentCount": 150, "previousCount": 100 }
+            ]
+        },
+        "Baby Care": {
+            "brands": [
+            { "name": "New Spice", "currentCount": 50, "previousCount": 150 },
+            { "name": "Relay", "currentCount": 50, "previousCount": 150 }
+
+            ]
+        },
+        "Fem Care": {
+            "brands": [
+            { "name": "BlueSky", "currentCount": 150, "previousCount": 100 }
+            ]
+        },
+        "Hand Wash": {
+            "brands": [
+            { "name": "Liberty", "currentCount": 150, "previousCount": 100 }
+            ]
+        }
+        }
+    },
+
+
+    "barChartBrands":{
+        "Magic": { "currentCount": 150, "previousCount": 500 },
+        "New Spice": { "currentCount": 100, "previousCount": 350 },
+        "Johnty": { "currentCount": 450, "previousCount": 200 },
+        "John": { "currentCount": 50, "previousCount": 250 },
+        "Relay": { "currentCount": 350, "previousCount": 100 },
+        "Fresh": { "currentCount": 50, "previousCount": 100 },
+        "RiverStone": { "currentCount": 250, "previousCount": 200 },
+        "Skyline": { "currentCount": 50, "previousCount": 150 },
+        "Solo": { "currentCount": 250, "previousCount": 300 },
+        "Liberty": { "currentCount": 300, "previousCount": 200 },
+        "BlueSky": { "currentCount": 150, "previousCount": 50 }
     }
 }

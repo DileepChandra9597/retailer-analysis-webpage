@@ -23,7 +23,8 @@ const PieChart = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '400px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '400px' }}>
+      <h5 style={{ marginTop: '60px' ,marginBottom: '10px' }}>Sales split of all Brands by Baseline vs Incremental Contribution</h5>
       <Pie data={data} options={options} />
     </div>
   );
