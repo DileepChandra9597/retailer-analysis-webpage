@@ -1,26 +1,35 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import React from 'react';
+import { Menu } from 'antd';
+import { ShoppingCartOutlined } from '@ant-design/icons';
+import { NavLink} from 'react-router-dom';
 
-const NavBar = () => {
+function Homepage() {
+
+
+  const menuItems = [
+    { key: 'rmo', icon: <ShoppingCartOutlined style={{ fontSize: '30px', height: '80%' }} />, text: 'Retail Media Optimization' },
+    { key: 'overview', text: 'Overview',link: '/app' },
+    { key: 'optimizer', text: 'Optimizer' },
+    { key: 'brand-landscape', text: 'Brand Landscape', link: '/brandscape' },
+    { key: 'simulator', text: 'Simulator' },
+    { key: 'category', text: 'Category' },
+    { key: 'campaign-planner', text: 'Campaign Planner' },
+  ];
+
   return (
-    <>
-      {/* Navbar Header code */}
-      <Navbar bg="light" data-bs-theme="light">
-        <Container>
-          <Navbar.Brand href="#home" style={{ fontWeight: 'bold' }}>
-            Retail Brand Software
-          </Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Overview</Nav.Link>
-            <Nav.Link href="#features">Brand Landscape</Nav.Link>
-            <Nav.Link href="#pricing">Optimizer</Nav.Link>
-            <Nav.Link href="#simulator">Simulator</Nav.Link>
-            <Nav.Link href="#campaign-planner">Campaign Planner</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-    </>
+    <div className='bar'>
+      <Menu mode='horizontal'>
+        {menuItems.map(item => (
+          <Menu.Item
+            key={item.key}
+            icon={item.icon}
+            style={item.key === 'rmo' ? { pointerEvents: 'none', fontWeight: 'bold' } : {}}>
+            {item.link ? <NavLink  to={item.link}>{item.text}</NavLink> : item.text}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
   );
-};
+}
 
-export default NavBar;
+export default Homepage;

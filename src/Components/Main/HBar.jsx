@@ -9,6 +9,7 @@ const HBar = () => {
     labels: ["Sponsored product_Non-Branded", "Sponsored Brand_Branded", "Sponsored Product_Branded", "YouTube","Sponsored Product_Conquest",  "Facebook","Sponsored Brand_Non_Branded","Sponsored Product_Auto",'Amazon Display',"Sponsored Product_Adjacent","Sponsored Display","Lightening Deal","Top_Deal","Coupons","Sponsored Brand_Video"],
     datasets: [
       {
+        
         data: [30,25,19, 14, 12, 11, 9, 8,7,6,5,4,1,0.8,0.2],
         backgroundColor: '#365486',
         borderColor: 'black',
@@ -25,7 +26,7 @@ const HBar = () => {
       x: {
         beginAtZero: true,
         ticks: {
-          callback: (value) => `${value}%`, // Corrected syntax here
+          callback: (value) => `${value}%`,
           fontSize: 5, // Adjust the font size of x-axis labels
         },
       },
@@ -37,6 +38,7 @@ const HBar = () => {
         grid: {
           display: false, // Hide x-axis grid lines
         },
+        
       },
     },
     plugins: {
@@ -56,6 +58,7 @@ const HBar = () => {
     aspectRatio: 1.5,
   };
   
+
   return (
     <div style={{ height: '420px' }}>
       <h4 style={{ textAlign: 'center' }}>All Brand Sales Selected Period vs Previous Period</h4>
@@ -65,3 +68,4 @@ const HBar = () => {
 };
 
 export default HBar;
+

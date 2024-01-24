@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'antd';
-import CardBar from './cardBar';
+import CardBar from './CardBar';
 
-const Carduu = () => {
+const Cards = () => {
   const [isCardBarVisible, setIsCardBarVisible] = useState(false);
 
   const toggleCardBarVisibility = () => {
@@ -10,12 +10,12 @@ const Carduu = () => {
   };
 
   return (
-    <div style={{ width: '40%', marginLeft: '50px', marginBottom: '50px', border: '1px solid #ccc', padding: '20px' }}>
+    <div style={{  width:'50%',marginLeft: '2%', marginBottom: '2%', border: '1px solid #ccc', padding: '2%' }}>
       <Card
         title="Volume Changes"
         bordered={false}
         style={{
-          width: 500,
+          width: '100%',
         }}
       >
         <div style={{ display: 'flex', gap: '18px' }}>
@@ -45,4 +45,4 @@ const Carduu = () => {
   );
 };
 
-export default Carduu;
+export default Cards;

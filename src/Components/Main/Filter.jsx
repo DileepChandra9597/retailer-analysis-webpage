@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Select, Space } from 'antd';
 import BarChart from './Bar.jsx'; // Import the BarChart component
 import filterData from './filterData.json';
@@ -8,36 +8,41 @@ import HBar from './HBar';
 const { Option } = Select;
 
 const Filter = () => {
-  const [selectedMarkets, setSelectedMarkets] = useState([]);
-  const [selectedRetailers, setSelectedRetailers] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [brandArray, setBrandArray] = useState([]); // New state to store selected brand names
-  const [selectedCategory, setSelectedCategory] = useState(''); // New state to store the selected category
+  // Load selected values from localStorage on component mount
+  const getLocalStorageValue = (key) => JSON.parse(localStorage.getItem(key)) || [];
+
+  const [selectedMarkets, setSelectedMarkets] = useState(getLocalStorageValue('selectedMarkets'));
+  const [selectedRetailers, setSelectedRetailers] = useState(getLocalStorageValue('selectedRetailers'));
+  const [selectedCategories, setSelectedCategories] = useState(getLocalStorageValue('selectedCategories'));
+  const [selectedBrands, setSelectedBrands] = useState(getLocalStorageValue('selectedBrands'));
+  const [brandArray, setBrandArray] = useState(getLocalStorageValue('brandArray'));
+  const [selectedCategory, setSelectedCategory] = useState(getLocalStorageValue('selectedCategory'));
+
+  useEffect(() => {
+    // Save selected values to localStorage whenever they change
+    localStorage.setItem('selectedMarkets', JSON.stringify(selectedMarkets));
+    localStorage.setItem('selectedRetailers', JSON.stringify(selectedRetailers));
+    localStorage.setItem('selectedCategories', JSON.stringify(selectedCategories));
+    localStorage.setItem('selectedBrands', JSON.stringify(selectedBrands));
+    localStorage.setItem('brandArray', JSON.stringify(brandArray));
+    localStorage.setItem('selectedCategory', JSON.stringify(selectedCategory));
+  }, [selectedMarkets, selectedRetailers, selectedCategories, selectedBrands, brandArray, selectedCategory]);
 
   const marketList = Object.keys(filterData.dropdown.markets);
   const retailerList = selectedMarkets.flatMap((market) => filterData.dropdown.markets[market].retailers);
   const categoryList = selectedRetailers.flatMap((retailer) => filterData.dropdown.retailers[retailer].categories);
-
-  // Update brandList based on the selected categories
   const brandList = selectedCategories.flatMap((category) => filterData.dropdown.categories[category]?.brands || []);
 
   const handleChange = (values, type) => {
     switch (type) {
       case 'market':
         setSelectedMarkets(values);
-        setSelectedRetailers([]);
-        setSelectedCategories([]);
-        setSelectedBrands([]);
         break;
       case 'retailer':
         setSelectedRetailers(values);
-        setSelectedCategories([]);
-        setSelectedBrands([]);
         break;
       case 'category':
         setSelectedCategories(values);
-        setSelectedBrands([]);
         break;
       case 'brand':
         const previouslySelectedBrands = selectedBrands.filter((brand) => values.includes(brand));
@@ -64,12 +69,13 @@ const Filter = () => {
 
       return updatedArray;
     });
-  }
+  };
+
 
 
   return (
     <div>
-      <Space direction="horizontal" style={{ background: 'cornflowerblue', padding: '20px', width: '100%', overflowX: 'auto' }}>
+      <Space direction="horizontal" style={{ background: '#3468C0', padding: '10px', width: '100%', overflowX: 'auto' }}>
       <Space direction="vertical">
         <div style={{ marginBottom: '0px', marginLeft: '10px' }}>
           <p style={{ margin: 0, color: 'white', fontWeight: 'bold' }}>Market</p>
@@ -80,7 +86,7 @@ const Filter = () => {
           style={{ width: '170px', marginTop: '0px', marginRight: '10px' }}
           placeholder="All Markets"
           onChange={(values) => handleChange(values, 'market')}
-        >
+          value={selectedMarkets}>
           {marketList.map((market) => (
             <Option key={market} value={market}>
               {market}
@@ -99,7 +105,7 @@ const Filter = () => {
           style={{ width: '180px', marginTop: '0px', marginRight: '10px' }}
           placeholder="All Retailers"
           onChange={(values) => handleChange(values, 'retailer')}
-        >
+          value={selectedRetailers} >
           {retailerList.map((retailer) => (
             <Option key={retailer} value={retailer}>
               {retailer}
@@ -118,7 +124,7 @@ const Filter = () => {
           style={{ width: '200px', marginRight: '10px' }}
           placeholder="All Categories"
           onChange={(values) => handleChange(values, 'category')}
-        >
+          value={selectedCategories}>
           {categoryList.map((category) => (
             <Option key={category} value={category}>
               {category}
@@ -138,7 +144,7 @@ const Filter = () => {
           placeholder="All Brands"
           onChange={(values) => handleChange(values, 'brand')}
           onDeselect={(value) => handleChange(selectedBrands.filter((brand) => brand !== value), 'brand')}
-        >
+          value={selectedBrands}>
           {brandList.map((brand) => (
             <Option key={brand.name} value={brand.name}>
               {brand.name}
@@ -147,16 +153,20 @@ const Filter = () => {
         </Select>
       </Space>
     </Space>
-    <div style={{ display: 'flex', marginTop: '50px' }}>
-        <div style={{ width: '40%', marginRight: '20px', borderRight: '1px solid #ccc', paddingRight: '20px' }}>
+    <div style={{ display: 'flex',padding:'2px' }}>
+
+        <div style={{ width: '40%', marginRight: '5px', border: '1px solid #ccc' }}>
           <BarChart selectedCategory={selectedCategory} selectedBrands={selectedBrands} filterData={filterData} updateBrandArray={handleSelectedData} />
         </div>
-        <div style={{ width: '25%', paddingLeft: '20px', marginRight: '20px', borderRight: '1px solid #ccc', paddingRight: '20px' }}>
+
+        <div style={{ width: '25%',paddingTop: '45px', paddingLeft: '5px', paddingRight: '5px',}}>
           <PieChart />
         </div>
-        <div style={{ width: '35%', paddingRight: '20px' }}>
+
+        <div style={{ width: '35%', paddingRight: '0px',paddingTop: '45px', border: '1px solid #ccc'  }}>
           <HBar />
         </div>
+
       </div>
     </div>
   );
